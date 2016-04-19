@@ -1,1 +1,1 @@
-My repo of exercises from GA Chicago's Javascript course.
+My repo of exercises from General Assembly Chicago's Javascript course.
