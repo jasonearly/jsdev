@@ -19,9 +19,9 @@ function displayPitch() {
 	}
 
 function saveFavorite() {
-	var favs = document.getElementById('xForY').innerHTML;
+		var favs = document.getElementById('xForY').innerHTML;
 
-	favorites.push(favs);
+		favorites.push(favs);
 
-	document.getElementById('favorites').innerHTML += favorites[favorites.length - 1] + '<br>';
-}
+		document.getElementById('favorites').innerHTML += favorites[favorites.length - 1] + '<br>';
+	}
