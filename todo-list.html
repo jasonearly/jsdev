@@ -70,7 +70,7 @@
 			//add item to li on button click
 			$('button').click(function(){
 				if ($('input').val() !== '') {
-				$('ul').append('<li><span><strong class="remove-item">❌</strong>' + $('input').val() + '</span><input type="checkbox" /></li>');
+				$('ul').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
 			}
 
 });
