@@ -68,7 +68,7 @@
 
 
 			//add item to li on button click
-			$('button').on('click', '', function(){
+			$('button').on('click', function(){
 				if ($('input[type=text]').val() !== '') {
 					$('ul#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
 				}
