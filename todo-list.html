@@ -16,10 +16,10 @@
 </head>
 <body>
 	<h2>TODO</h2>
-	<ul>
+	<ul id="list">
 		<li>
 			<input type="text" />
-			<button>Add</button>
+			<button id="add">Add</button>
 		</li>
 		<li>
 			<span>
@@ -54,7 +54,7 @@
 
 			//on click check and toggle line through
 
-			$('input[type=checkbox]').click(function() {
+			$('ul#list').on('click', 'input[type=checkbox]', function() {
 				var $this = $(this);
 				    // $this will contain a reference to the checkbox
 				    if ($this.is(':checked')) {
@@ -68,18 +68,17 @@
 
 
 			//add item to li on button click
-			$('button').click(function(){
+			$('button').on('click', '', function(){
 				if ($('input[type=text]').val() !== '') {
-					$('ul').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+					$('ul#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
 				}
 
 			});
 			//remove li on click of .remove-item
-			$('.remove-item').click(function() {
+			$('ul#list').on('click', '.remove-item', function() {
 				$(this).parents().get()[1].remove();
 
 			});
-
 
 
 
