@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<style>
+	.remove-item {
+		cursor: pointer;
+	}
+
+	.complete{
+		text-decoration: line-through;
+	}
+	.hide {
+		display: hidden;
+	}
+	</style>
+</head>
+<body>
+	<h2>TODO</h2>
+	<ul>
+		<li>
+			<input type="text" />
+			<button>Add</button>
+		</li>
+		<li>
+			<span>
+				<strong class='remove-item'>❌</strong>
+				Wash the dishes
+			</span>
+			<input type="checkbox"/>
+		</li>
+		<li>
+			<span>
+				<strong class='remove-item'>❌</strong>
+				Take out the trash
+			</span>
+			<input type="checkbox" />
+		</li>
+		<li>
+			<span>
+				<strong class='remove-item'>❌</strong>
+				Pay the rent
+			</span>
+			<input type="checkbox" />
+		</li>
+
+	</ul>
+
+	<script src='http://code.jquery.com/jquery-latest.min.js'></script>
+	<script>
+			// Put your Javascript code here
+
+			//Display list of item with checkboxes next to them
+
+
+			//on click check and toggle line through
+
+			$('input[type=checkbox]').click(function() {
+				var $this = $(this);
+				    // $this will contain a reference to the checkbox
+				    if ($this.is(':checked')) {
+				        // the checkbox was checked
+				        $(this).parent().addClass('complete');
+				    } else {
+				        // the checkbox was unchecked
+				        $(this).parent().removeClass('complete');
+				    }
+				});
+
+
+			//add item to li on button click
+			$('button').click(function(){
+				if ($('input').val() !== '') {
+				$('ul').append('<li><span><strong class="remove-item">❌</strong>' + $('input').val() + '</span><input type="checkbox" /></li>');
+			}
+
+});
+			//remove li on click of .remove-item
+			$('.remove-item').on('click', function() {
+				$(this).parents().get()[1].remove();
+
+			});
+
+
+
+
+
+
+
+			//
+			</script>
+		</body>
+		</html>
