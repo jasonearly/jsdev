@@ -54,7 +54,7 @@
 
 			//on click check and toggle line through
 
-			$('ul#list').on('click', 'input[type=checkbox]', function() {
+			$('#list').on('click', 'input[type=checkbox]', function() {
 				var $this = $(this);
 				    // $this will contain a reference to the checkbox
 				    if ($this.is(':checked')) {
@@ -70,13 +70,13 @@
 			//add item to li on button click
 			$('button').on('click', function(){
 				if ($('input[type=text]').val() !== '') {
-					$('ul#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+					$('#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
 				}
 
 			});
 			//remove li on click of .remove-item
-			$('ul#list').on('click', '.remove-item', function() {
-				$(this).parents().get()[1].remove();
+			$('#list').on('click', '.remove-item', function() {
+				$(this).parents()[1].remove();
 
 			});
 
