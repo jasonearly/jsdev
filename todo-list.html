@@ -4,6 +4,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
 	<style>
 	.remove-item {
 		cursor: pointer;
@@ -13,14 +15,21 @@
 		text-decoration: line-through;
 	}
 
+	ul li {
+		list-style: none;
+	}
+	input[type=checkbox]{
+		margin-left: 5px;
+	}
+
 	</style>
 </head>
 <body>
-	<h2>TODO</h2>
+	<h1>TODO</h1>
 	<ul id="list">
 		<li>
 			<input type="text" />
-			<button id="add">Add</button>
+			<button id="add" class="btn btn-sm btn-default">Add</button>
 		</li>
 		<li>
 			<span>
@@ -72,12 +81,13 @@
 			$('button').on('click', function(){
 				if ($('input[type=text]').val() !== '') {
 					$('#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+					$('input[type=text]').val(null);
 				}
 
 			});
 			//remove li on click of .remove-item
 			$('#list').on('click', '.remove-item', function() {
-				$(this).parents()[1].remove();
+				$(this).parents()[1].remove(); // could be .parent().parent().remove();
 
 			});
 
