@@ -68,7 +68,6 @@
 					$('#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
 					$('input[type=text]').val(null);
 				}
-
 			});
 
 
@@ -89,7 +88,6 @@
 			//remove li on click of .remove-item
 			$('#list').on('click', '.remove-item', function() {
 				$(this).parents()[1].remove(); // could be .parent().parent().remove();
-
 			});
 
 
