@@ -62,6 +62,16 @@
 			//Display list of item with checkboxes next to them
 
 
+			//add item to li on button click
+			$('button').on('click', function(){
+				if ($('input[type=text]').val() !== '') {
+					$('#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+					$('input[type=text]').val(null);
+				}
+
+			});
+
+
 			//on click check and toggle line through
 
 			$('#list').on('click', 'input[type=checkbox]', function() {
@@ -74,17 +84,8 @@
 				        // the checkbox was unchecked
 				        $(this).parent().removeClass('complete');
 				    }
-				});
-
-
-			//add item to li on button click
-			$('button').on('click', function(){
-				if ($('input[type=text]').val() !== '') {
-					$('#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
-					$('input[type=text]').val(null);
-				}
-
 			});
+
 			//remove li on click of .remove-item
 			$('#list').on('click', '.remove-item', function() {
 				$(this).parents()[1].remove(); // could be .parent().parent().remove();
