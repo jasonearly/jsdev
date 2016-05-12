@@ -31,7 +31,7 @@
 			<input type="text" />
 			<button id="add" class="btn btn-sm btn-default">Add</button>
 		</li>
-		<li>
+<!-- 		<li>
 			<span>
 				<strong class='remove-item'>❌</strong>
 				Wash the dishes
@@ -51,7 +51,7 @@
 				Pay the rent
 			</span>
 			<input type="checkbox" />
-		</li>
+		</li> -->
 
 	</ul>
 
@@ -65,9 +65,16 @@
 			//add item to li on button click
 			$('button').on('click', function(){
 				if ($('input[type=text]').val() !== '') {
-					$('#list').append('<li><span><strong class="remove-item">❌</strong>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+					$('#list').append('<li><strong class="remove-item">❌</strong><span>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+					$('span .remove-item').hide();
 					$('input[type=text]').val(null);
 				}
+
+
+				//- Don't allow users to add the same item twice
+				//if input val == prev
+				//dont append
+
 			});
 
 
@@ -78,21 +85,21 @@
 				    // $this will contain a reference to the checkbox
 				    if ($this.is(':checked')) {
 				        // the checkbox was checked
-				        $(this).parent().addClass('complete');
+				        $(this).prev().addClass('complete');
+				        //if checked show remove item
+				        $(this).siblings().children().show();
 				    } else {
 				        // the checkbox was unchecked
-				        $(this).parent().removeClass('complete');
+				        $(this).prev().removeClass('complete');
+				        // if not checked
+				        $(this).siblings().children().hide();
 				    }
 			});
 
 			//remove li on click of .remove-item
 			$('#list').on('click', '.remove-item', function() {
-				$(this).parents()[1].remove(); // could be .parent().parent().remove();
+				$(this).parents()[0].remove(); // could be .parent().parent().remove();
 			});
-
-
-
-
 
 
 			//
