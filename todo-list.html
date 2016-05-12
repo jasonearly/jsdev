@@ -65,16 +65,17 @@
 
 			//add item to li on button click
 			$('button').on('click', function(){
-				if ($('input[type=text]').val() !== '') {
+				//- Don't allow users to add the same item twice
+				//if input val == blank or prev
+				//dont append
+				if ($('input[type=text]').val() !== '' || $('input[type=text]').val() !== $('input[type=text]').prevAll().val()) {
 					$('#list').append('<li><strong class="remove-item">❌</strong><span>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
 					$('.remove-item').hide();
 					$('input[type=text]').val(null);
 				}
 
 
-				//- Don't allow users to add the same item twice
-				//if input val == prev
-				//dont append
+
 
 			});
 
