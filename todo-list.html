@@ -99,7 +99,7 @@
 
 			//remove li on click of .remove-item
 			$('#list').on('click', '.remove-item', function() {
-				$(this).parents()[1].remove(); // could be .parent().parent().remove();
+				$(this).parents()[0].remove(); // could be .parent().parent().remove();
 			});
 
 
