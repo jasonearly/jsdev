@@ -7,8 +7,13 @@
 
 
 	<style>
+	h1{
+		text-align: center;
+	}
 	.remove-item {
 		cursor: pointer;
+		float: left;
+		margin-right: 10px;
 	}
 
 	.complete{
@@ -17,20 +22,37 @@
 
 	ul li {
 		list-style: none;
+		margin: 10px auto;
+		padding-top: 10px;
+
 	}
 	input[type=checkbox]{
 		margin-left: 5px;
+		float: right;
+	}
+	input[type=text]{
+	width: 75%;
+	height: 30px;
+	}
+	button {
+		float: right;
 	}
 
 	</style>
 </head>
 <body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+
+
 	<h1>TODO</h1>
 	<ul id="list">
 		<li>
 			<input type="text" />
 			<button id="add" class="btn btn-sm btn-default">Add</button>
 		</li>
+
 <!-- 		<li>
 			<span>
 				<strong class='remove-item'>❌</strong>
@@ -66,10 +88,10 @@
 			//add item to li on button click
 			$('button').on('click', function(){
 				//- Don't allow users to add the same item twice
-				//if input val == blank or prev
+				//if input val == blank or prev val
 				//dont append
-				if ($('input[type=text]').val() !== '' || $('input[type=text]').val() !== $('input[type=text]').prevAll().val()) {
-					$('#list').append('<li><strong class="remove-item">❌</strong><span>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
+				if ($('input[type=text]').val() !== '') {
+					$('#list').append('<li><strong class="remove-item">❌</strong><span>' + $('input[type=text]').val() + '</span><input type="checkbox" /><hr></li>');
 					$('.remove-item').hide();
 					$('input[type=text]').val(null);
 				}
@@ -92,7 +114,7 @@
 				        $(this).prev().prev().show();
 				    } else {
 				        // the checkbox was unchecked
-				        $(this).parent().removeClass('complete');
+				        $(this).prev().removeClass('complete');
 				        // if not checked
 				        $(this).prev().prev().hide();
 				    }
@@ -106,5 +128,8 @@
 
 			//
 			</script>
+			</div>
+		</div>
+			</div>
 		</body>
 		</html>
