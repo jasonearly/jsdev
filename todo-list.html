@@ -46,8 +46,9 @@
 			<input type="checkbox" />
 		</li>
 		<li>
+			<strong class='remove-item'>❌</strong>
 			<span>
-				<strong class='remove-item'>❌</strong>
+
 				Pay the rent
 			</span>
 			<input type="checkbox" />
@@ -66,7 +67,7 @@
 			$('button').on('click', function(){
 				if ($('input[type=text]').val() !== '') {
 					$('#list').append('<li><strong class="remove-item">❌</strong><span>' + $('input[type=text]').val() + '</span><input type="checkbox" /></li>');
-					$('span .remove-item').hide();
+					$('.remove-item').hide();
 					$('input[type=text]').val(null);
 				}
 
@@ -87,18 +88,18 @@
 				        // the checkbox was checked
 				        $(this).prev().addClass('complete');
 				        //if checked show remove item
-				        $(this).siblings().children().show();
+				        $(this).prev().prev().show();
 				    } else {
 				        // the checkbox was unchecked
-				        $(this).prev().removeClass('complete');
+				        $(this).parent().removeClass('complete');
 				        // if not checked
-				        $(this).siblings().children().hide();
+				        $(this).prev().prev().hide();
 				    }
 			});
 
 			//remove li on click of .remove-item
 			$('#list').on('click', '.remove-item', function() {
-				$(this).parents()[0].remove(); // could be .parent().parent().remove();
+				$(this).parents()[1].remove(); // could be .parent().parent().remove();
 			});
 
 
