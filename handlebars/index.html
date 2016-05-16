@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>handlebars test</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+	<script  src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+
+	<script id="header" type="text/x-handlebars-template">
+		<div>{{ headerTitle }}</div>
+		Today is {{weekDay}}
+	</script>
+
+
+
+
+<script type="text/javascript">
+var theData = {
+	headerTitle:"Shop Page",
+	weekDay:"Wednesday"
+};
+
+// Retrieve the HTML from the script tag we setup in step 1​
+// We use the id (header) of the script tag to target it on the page​
+var theTemplateScript = $("#header").html();
+
+// The Handlebars.compile function returns a function to theTemplate variable​
+var theTemplate = Handlebars.compile (theTemplateScript);
+$(document.body).append (theTemplate (theData));
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+​<head>
+ <meta charset="utf-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script  src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</head><body>The List of Shoes:
+
+<ul class="shoesNav">
+	<script id="shoe-template" type="x-handlebars-template">
+	{{#each this}}
+		<li class="shoes"><a href="/{{name}}">{{name}} -- Price: {{price}} </a></li>
+	{{/each}}
+</script>
+</ul></body>
+​</html>
