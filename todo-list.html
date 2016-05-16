@@ -90,6 +90,12 @@
 				//- Don't allow users to add the same item twice
 				//if input val == blank or prev val
 				//dont append
+
+
+				// add input to array.
+				// loop through to evaluate val() match
+				// if val == entry
+				// dont append
 				if ($('input[type=text]').val() !== '') {
 					$('#list').append('<li><strong class="remove-item">❌</strong><span>' + $('input[type=text]').val() + '</span><input type="checkbox" /><hr></li>');
 					$('.remove-item').hide();
