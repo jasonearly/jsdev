@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<!-- Latest compiled and minified CSS Bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- handlebars -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+	<!-- Jquery -->
+	<script src='http://code.jquery.com/jquery-latest.min.js'></script>
+
+	<style>
+		.remove-item {
+			cursor: pointer;
+		}
+
+		.complete{
+			text-decoration: line-through;
+		}
+
+		ul li {
+			list-style: none;
+		}
+		input[type=checkbox]{
+			margin-left: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- this is where the code is generated into -->
+	<div id="app">
+	</div>
+
+<!-- the handlebars template -->
+<script id="itemList" type="text/x-handlebars-template">
+<h1>TODO</h1>
+<ul id="list">
+<li>
+<input type="text" />
+<button id="add" class="btn btn-sm btn-default">Add</button>
+</li>
+
+
+
+
+<li><span><strong class='remove-item'>❌</strong>{{text}}</span><input type='checkbox'/></li>
+
+
+</ul>
+</script>
+
+<!-- the js/jquery -->
+		<script type="text/javascript">
+		 $('button').on('click', function(){
+		 		if ($('input[type=text]').val() !== '') {
+			// var itemInfo = "<li><span><strong class='remove-item'>❌</strong>{{text}}</span><input type='checkbox'/></li>";
+
+
+			// Generate the HTML from the template
+			var listInfo = document.getElementById('itemList').innerHTML += data;
+
+			// Compile it with Handlebars, preparing it for use
+			var template = Handlebars.compile(listInfo);
+
+
+			// Declare our data
+			var data = template({
+					text: $('input[type=text]').val()
+				});
+
+			document.getElementById('app').innerHTML += data;
+
+			//var generatedHtml = template(data);
+			//$('#app').append(generatedHtml);
+
+		</script>
+
+
+
+
+
+<!--  -->
+
+
+
+<!--
+ <script type="text/Javascript">
+// Get the contents of our template
+				var templateSource = $('#todo').html();
+
+				// Compile it with Handlebars, preparing it for use
+				var compiledTemplate = Handlebars.compile(templateSource);
+
+				// Declare our data
+				var data = {
+				    text: $('input[type=text]').val()
+				};
+
+				// Generate the HTML from the template
+				var generatedHtml = compiledTemplate(data);
+				$('#list').append(generatedHtml);
+
+</script>
+
+ -->
+
+
+
+
+<!--
+<script type="text/javascript">
+
+
+			// Put your Javascript code here
+
+ 			//Display list of item with checkboxes next to them
+
+
+			//add item to li on button click
+			$('button').on('click', function(){
+				if ($('input[type=text]').val() !== '') {
+
+
+
+				$('input[type=text]').val(null);
+				}
+			});
+
+
+
+
+			//on click check and toggle line through
+			$('#list').on('click', 'input[type=checkbox]', function() {
+				var $this = $(this);
+				    // $this will contain a reference to the checkbox
+				    if ($this.is(':checked')) {
+				        // the checkbox was checked
+				        $(this).parent().addClass('complete');
+				    } else {
+				        // the checkbox was unchecked
+				        $(this).parent().removeClass('complete');
+				    }
+				});
+
+
+
+			//remove li on click of .remove-item
+			$('#list').on('click', '.remove-item', function() {
+				$(this).parents()[1].remove(); // could be .parent().parent().remove();
+			});
+
+
+
+
+
+
+
+</script>
+
+ -->		</body>
+		</html>
