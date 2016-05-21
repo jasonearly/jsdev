@@ -13,8 +13,8 @@
 	<div id="weather">
 		<script id="temp-template" type="x-handlebars-template">
 
-		{{name}} -- Price: {{price}}
-		{{get_data}}
+		<p>The temperature is {{toFahrenheight main.temp}} in {{name}} with a wind speed of {{wind.speed}} mph.</p>
+		{{log this}}
 
 		</script>
 	</div>
