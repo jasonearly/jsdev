@@ -26,10 +26,12 @@ $.ajax({
 
 
 //Attempt at Handlebars solution
+//Helper to convert temp from kelvin to fahrenheight
 Handlebars.registerHelper('toFahrenheight', function(kelvin) {
 	return ((kelvin - 273) * (9/5) + 32).toFixed(1) + '\u00B0F';
 });
 
+//Creates template data to pass to placeholder
 function processHandlebarsTemplate(templateId, data) {
 	var templateSource = $('#' + templateId).html();
 	var compiledTemplate = Handlebars.compile(templateSource);
@@ -37,6 +39,7 @@ function processHandlebarsTemplate(templateId, data) {
 	return compiledTemplate(data);
 }
 
+//gets data from the api and puts together with template id
 $.ajax({
 	type: 'GET',
 	url: 'http://api.openweathermap.org/data/2.5/weather?zip=60647,us&APPID=e0348244f8198c705d7e3a4d429a4e93',
