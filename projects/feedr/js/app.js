@@ -1,7 +1,6 @@
 /*
   Please add all Javascript code to this file.
 */
-$( document ).ready(function() {
 
 
 //Feed rules
@@ -48,6 +47,7 @@ $( document ).ready(function() {
 
 //trigger with keypress for test
 $(document).keypress(function(e) {
+	//needs to be on page load
     if(e.which === 49) {
       $('#popUp').toggleClass('hidden');
     }
@@ -61,11 +61,6 @@ $('.closePopUp').click(function(){
 
 
 //Clicking/tapping the "Feedr" logo will display the main/default feed.
-
-
-});
-
-
 
 
 
