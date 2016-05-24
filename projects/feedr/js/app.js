@@ -46,9 +46,45 @@ $( document ).ready(function() {
 
 //When the app is first loading and when the user selects to load a new feed from the dropdown, display the #popUp container with the .loader class. You can toggle the .hidden class from the container to display/hide the overlay container.
 
+//trigger with keypress for test
+$(document).keypress(function(e) {
+    if(e.which === 49) {
+      $('#popUp').toggleClass('hidden');
+    }
+	});
+
+
 //Add functionality to hide the pop-up when user selects the "X" button on the pop-up.
+$('.closePopUp').click(function(){
+		$('#popUp').addClass('hidden');
+	});
+
 
 //Clicking/tapping the "Feedr" logo will display the main/default feed.
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
