@@ -1,3 +1,4 @@
+'use strict';
 /*
   Please add all Javascript code to this file.
 */
@@ -28,18 +29,18 @@
 //UI interactions
 //When the user clicks/taps the search icon, expand the input box. Best approach for this is to toggle the .active class for the #search container. If the search input box is already expanded tapping the search icon again will close the input.
 
-	$('#search_button').click(function(){
-		$('#search').toggleClass('active');
-	});
+$('#search_button').click(function() {
+    $('#search').toggleClass('active');
+});
 
-	//Pressing the "Enter" key should also close the opened input box. See Bonus 2 for search filtering functionality.
-  //press enter on text area..
+//Pressing the "Enter" key should also close the opened input box. See Bonus 2 for search filtering functionality.
+//press enter on text area..
 
-	$(document).keypress(function(e) {
-    if(e.which === 13) {
-      $('#search').removeClass('active');
+$(document).keypress(function(e) {
+    if (e.which === 13) {
+        $('#search').removeClass('active');
     }
-	});
+});
 
 
 
@@ -47,39 +48,17 @@
 
 //trigger with keypress for test
 $(document).keypress(function(e) {
-	//needs to be on page load
-    if(e.which === 49) {
-      $('#popUp').toggleClass('hidden');
+    //needs to be on page load
+    if (e.which === 49) {
+        $('#popUp').toggleClass('hidden');
     }
-	});
+});
 
 
 //Add functionality to hide the pop-up when user selects the "X" button on the pop-up.
-$('.closePopUp').click(function(){
-		$('#popUp').addClass('hidden');
-	});
+$('.closePopUp').click(function() {
+    $('#popUp').addClass('hidden');
+});
 
 
 //Clicking/tapping the "Feedr" logo will display the main/default feed.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
