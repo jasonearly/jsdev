@@ -2,33 +2,50 @@
 /*
   Please add all Javascript code to this file.
 */
+$(window).on('load', function(){
+    $('#popUp a').removeClass('closePopUp');
+    $('#popUp').removeClass('hidden');
+  });
 
-$.get("https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json", function(results){
-  console.log(results);
-  results.data.feed.forEach(function(result){
-    $("#main").append('<article class="article"><section class="featuredImage"><img src="' +result.content.media.images[0].url+ '" alt="" /></section><section class="articleContent"><a href="' +result.content.url+ '"><h3>' +result.content.title+ '</h3></a><h6>'+result.content.tags[0].display+'</h6></section><section class="impressions">'+result.diggs.count+'</section><div class="clearfix"></div></article>')
-  })
-})
+//Loads data feed
 
+// $.get("https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json", function(results) {
+//     console.log(results);
+//     results.data.feed.forEach(function(result) {
+//         $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>')
+//     })
+// })
+
+
+$.ajax({
+    type: 'GET',
+    url: 'https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json',
+    success: function(results) {
+        results.data.feed.forEach(function(result) {
+            $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>')
+        })
+        $('#popUp').addClass('hidden');
+    }
+});
 
 //Feed rules
-//When the application first loads display the loading container (see below on instructions to toggle this).
-   $(window).load(function(){
-      $('#popUp').removeClass('hidden');
+//1. When the application first loads display the loading container (see below on instructions to toggle this).
+//DONE
 
 
 
+//2. When you successfully retrieve information from the default API hide the loader and replace the content of the #main container with that of the API. The DOM structure of each article must adhere to the .article structure.
+//DONE
 
-//When you successfully retrieve information from the default API hide the loader and replace the content of the #main container with that of the API. The DOM structure of each article must adhere to the .article structure.
+   //     $(document).ready(function() {
+   //    $('#popUp').addClass('hidden');
+   //    console.log('Popup loaded then was hidden');
+   // });
 
-       $(document).ready(function() {
-       $('#popUp').addClass('hidden');
-       console.log('Popup loaded then was hidden');
-   });
-    });
 
 
 //When the user selects an article's title show the #popUp overlay. The content of the article must be inserted in the .container class inside #popUp.
+
 //Make sure you remove the .loader class when toggling the article information in the pop-up.
 
 
@@ -36,6 +53,12 @@ $.get("https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/new
 
 //When the user selects a source from the dropdown menu on the header,
 //replace the content of the page with articles from the newly selected source.
+
+// $().on('click' function(){
+//     hide current data source
+//     load/display new data source
+// });
+
 
 //Display the loading pop up when the user first selects the new source, and hide it on success.
 
