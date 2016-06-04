@@ -16,7 +16,7 @@ $(window).on('load', function() {
 //     })
 // })
 
-
+$(function loadDigg() {
 $.ajax({
     type: 'GET',
     url: 'https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json',
@@ -29,6 +29,7 @@ $.ajax({
         $('#popUp').addClass('hidden');
     }
 });
+})
 
 $(function loadReddit() {
     //    var url = 'http://www.theverge.com/apple/rss/index.xml';
@@ -49,13 +50,32 @@ $(function loadReddit() {
                 $("#main").append('loading reddit' + ' ' + result.data.title);
 
 
-        });
+            });
+        }
+    });
+});
 
 
+$(function loadGoogleNews() {
+    //    var url = 'http://www.theverge.com/apple/rss/index.xml';
+    //var url = 'https://www.reddit.com/r/news.json';
+    $.ajax({
+        type: "GET",
+        //+ encodeURIComponent(url)
+        url: 'https://accesscontrolalloworiginall.herokuapp.com/http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss',
+        //dataType: 'json',
+        error: function() {
+            alert('Unable to load feed, Incorrect path or invalid feed');
+        },
+        success: function(results) {
+            //alert('It loads!');
+            //values = xml.responseData.feed.entries;
+            //console.log(values);
+            results.responseData.feed.entries.forEach(function(result) {
+                $("#main").append('loading googleNews' + ' ' + result.title);
 
 
-
-
+            });
         }
     });
 });
