@@ -191,7 +191,6 @@ $('#googleNews').on('click', function loadGoogleNews() {
 
 
 
-
 //STILL NEEDS TO LOOP THROUGH TO GET RIGHT DATA
 
 
