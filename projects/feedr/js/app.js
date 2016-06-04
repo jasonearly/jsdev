@@ -2,12 +2,17 @@
 /*
   Please add all Javascript code to this file.
   */
+
+var redditLogo = "https://camo.githubusercontent.com/b13830f5a9baecd3d83ef5cae4d5107d25cdbfbe/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3732313033382f313732383830352f35336532613364382d363262352d313165332d383964312d3934376632373062646430332e706e67";
+var googleNews = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png";
+
 $(window).on('load', function() {
     $('#popUp a').hide();
     $('#popUp').removeClass('hidden');
 });
 
 //Loads data feed
+//DONE
 
 // $.get("https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json", function(results) {
 //     console.log(results);
@@ -16,7 +21,7 @@ $(window).on('load', function() {
 //     })
 // })
 
-$(function loadDigg() {
+$(function initialDigg() {
 $.ajax({
     type: 'GET',
     url: 'https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json',
@@ -31,9 +36,28 @@ $.ajax({
 });
 })
 
-$(function loadReddit() {
+$('#digg').on('click' ,function loadDigg() {
+    $('#popUp').removeClass('hidden');
+$.ajax({
+    type: 'GET',
+    url: 'https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json',
+    success: function(results) {
+$("#main").empty();
+        results.data.feed.forEach(function(result) {
+
+            //HANDLBARS THIS
+            $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>')
+        })
+        $('#popUp').addClass('hidden');
+    }
+});
+})
+
+
+$('#reddit').on('click' , function loadReddit() {
     //    var url = 'http://www.theverge.com/apple/rss/index.xml';
     //var url = 'https://www.reddit.com/r/news.json';
+       $('#popUp').removeClass('hidden');
     $.ajax({
         type: "GET",
         //+ encodeURIComponent(url)
@@ -43,11 +67,14 @@ $(function loadReddit() {
             alert('Unable to load feed, Incorrect path or invalid feed');
         },
         success: function(results) {
+            $("#main").empty();
+            $('#popUp').addClass('hidden');
             //alert('It loads!');
             //values = xml.responseData.feed.entries;
             //console.log(values);
             results.data.children.forEach(function(result) {
-                $("#main").append('loading reddit' + ' ' + result.data.title);
+                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions">count</section><div class="clearfix"></div></article>');
+
 
 
             });
@@ -56,9 +83,10 @@ $(function loadReddit() {
 });
 
 
-$(function loadGoogleNews() {
+$('#googleNews').on('click', function loadGoogleNews() {
     //    var url = 'http://www.theverge.com/apple/rss/index.xml';
     //var url = 'https://www.reddit.com/r/news.json';
+       $('#popUp').removeClass('hidden');
     $.ajax({
         type: "GET",
         //+ encodeURIComponent(url)
@@ -68,12 +96,13 @@ $(function loadGoogleNews() {
             alert('Unable to load feed, Incorrect path or invalid feed');
         },
         success: function(results) {
+            $("#main").empty();
+$('#popUp').addClass('hidden');
             //alert('It loads!');
             //values = xml.responseData.feed.entries;
             //console.log(values);
             results.responseData.feed.entries.forEach(function(result) {
-                $("#main").append('loading googleNews' + ' ' + result.title);
-
+                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + googleNews + '"/></section><section class="articleContent"><a href="' + result.link + '"><h3>' + result.title + '</h3></a><h6>' + result.categories + '</h6></section><section class="impressions">count</section><div class="clearfix"></div></article>');
 
             });
         }
@@ -109,7 +138,7 @@ $(function loadGoogleNews() {
 
 //6. When the user selects a source from the dropdown menu on the header,
 //replace the content of the page with articles from the newly selected source.
-
+//DONE
 // $().on('click' function(){
 //     hide current data source
 //     load/display new data source
@@ -117,10 +146,10 @@ $(function loadGoogleNews() {
 
 
 //7. Display the loading pop up when the user first selects the new source, and hide it on success.
-
+//DONE
 
 //8. Add an error message (either alert or a notification on the page) if the app cannot load from the selected feed.
-
+//DONE
 
 
 //UI interactions
@@ -142,15 +171,16 @@ $(document).keypress(function(e) {
 
 
 //11. When the app is first loading and when the user selects to load a new feed from the dropdown, display the #popUp container with the .loader class. You can toggle the .hidden class from the container to display/hide the overlay container.
+//DONE
 
-//trigger with keypress for test
-$(document).keypress(function(e) {
-    //needs to be on page load
-    if (e.which === 49) {
-        $('#popUp').toggleClass('hidden');
-        $('#popUp a').show();
-    }
-});
+// //trigger with keypress for test
+// $(document).keypress(function(e) {
+//     //needs to be on page load
+//     if (e.which === 49) {
+//         $('#popUp').toggleClass('hidden');
+//         $('#popUp a').show();
+//     }
+// });
 
 
 //12. Add functionality to hide the pop-up when user selects the "X" button on the pop-up.
@@ -162,3 +192,4 @@ $('.closePopUp').click(function() {
 
 //13. Clicking/tapping the "Feedr" logo will display the main/default feed.
 // on click load data source[0]
+//DONE
