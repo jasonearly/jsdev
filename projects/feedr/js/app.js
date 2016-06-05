@@ -124,7 +124,7 @@ $('#reddit').on('click', function loadReddit() {
             $('#popUp').addClass('hidden');
 
             results.data.children.forEach(function(result) {
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions">count</section><div class="clearfix"></div></article>');
+                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions"></section><div class="clearfix"></div></article>');
 
                 $('.articleContent a').on('click', function(event) {
                     event.preventDefault();
@@ -163,7 +163,7 @@ $('#googleNews').on('click', function loadGoogleNews() {
             $('#popUp').addClass('hidden');
 
             results.responseData.feed.entries.forEach(function(result) {
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + googleNews + '"/></section><section class="articleContent"><a href="' + result.link + '"><h3>' + result.title + '</h3></a><h6>' + result.categories + '</h6></section><section class="impressions">count</section><div class="clearfix"></div></article>');
+                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + googleNews + '"/></section><section class="articleContent"><a href="' + result.link + '"><h3>' + result.title + '</h3></a><h6>' + result.categories + '</h6></section><section class="impressions"></section><div class="clearfix"></div></article>');
 
                 $('.articleContent a').on('click', function(event) {
                     event.preventDefault();
