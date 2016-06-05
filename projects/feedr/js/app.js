@@ -3,8 +3,8 @@
   Please add all Javascript code to this file.
   */
 
-var redditLogo = "https://camo.githubusercontent.com/b13830f5a9baecd3d83ef5cae4d5107d25cdbfbe/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3732313033382f313732383830352f35336532613364382d363262352d313165332d383964312d3934376632373062646430332e706e67";
-var googleNews = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png";
+var redditLogo = 'https://camo.githubusercontent.com/b13830f5a9baecd3d83ef5cae4d5107d25cdbfbe/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3732313033382f313732383830352f35336532613364382d363262352d313165332d383964312d3934376632373062646430332e706e67';
+var googleNews = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png';
 
 //initial load
 $(window).on('load', function() {
@@ -18,7 +18,7 @@ $(document).keyup(function(e) {
     if (e.which === 27) {
         $('#popUp').addClass('hidden loader');
         $('#popUp a').hide();
-         $('#popUp p').show();
+        $('#popUp p').show();
     }
 });
 
@@ -27,6 +27,7 @@ $(document).keyup(function(e) {
 $('#search_button').click(function() {
     $('#search').toggleClass('active');
 });
+
 $(document).keypress(function(e) {
     if (e.which === 13) {
         $('#search').removeClass('active');
@@ -45,8 +46,7 @@ $(function initialDigg() {
             results.data.feed.forEach(function(result) {
 
                 //HANDLBARS THIS
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>')
-
+                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
 
                 $('.articleContent a').on('click', function(event) {
                     event.preventDefault();
@@ -59,15 +59,11 @@ $(function initialDigg() {
 
                 });
 
-
                 $('.closePopUp').click(function() {
                     $('#popUp').addClass('hidden loader');
                     $('#popUp a').hide();
                 });
-
-
             });
-
 
             $('#popUp').addClass('hidden');
         }
@@ -77,6 +73,7 @@ $(function initialDigg() {
 //load digg feed
 $('.digg').on('click', function loadDigg() {
     $('#popUp').removeClass('hidden');
+    $('#newsSource').text('Digg');
     $.ajax({
         type: 'GET',
         url: 'https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json',
@@ -89,7 +86,7 @@ $('.digg').on('click', function loadDigg() {
             results.data.feed.forEach(function(result) {
 
                 //HANDLBARS THIS
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>')
+                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
 
                 $('.articleContent a').on('click', function(event) {
                     event.preventDefault();
@@ -115,6 +112,7 @@ $('.digg').on('click', function loadDigg() {
 //load reddit source
 $('#reddit').on('click', function loadReddit() {
     $('#popUp').removeClass('hidden');
+    $('#newsSource').text('Reddit');
     $.ajax({
         type: "GET",
         url: 'https://accesscontrolalloworiginall.herokuapp.com/https://www.reddit.com/r/news.json',
@@ -153,6 +151,7 @@ $('#reddit').on('click', function loadReddit() {
 //load google news feed
 $('#googleNews').on('click', function loadGoogleNews() {
     $('#popUp').removeClass('hidden');
+    $('#newsSource').text('Google News');
     $.ajax({
         type: "GET",
         url: 'https://accesscontrolalloworiginall.herokuapp.com/http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss',
@@ -192,9 +191,6 @@ $('#googleNews').on('click', function loadGoogleNews() {
 
 
 //STILL NEEDS TO LOOP THROUGH TO GET RIGHT DATA
-
-
 //The app must be able to display the full contents of the article. This can be as simple as an iframe or as fancy as you need it to be.
-//Get news source title to display in the selector
 
 
