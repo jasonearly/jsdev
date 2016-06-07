@@ -56,11 +56,11 @@ $(function initialDigg() {
                     $('#source').on('click', function() {
                         event.preventDefault();
                         $('#popUp .container').hide();
-                       $('iframe').show();
+                        $('iframe').show();
                     });
                 });
 
-                $('.closePopUp').on('click',function() {
+                $('.closePopUp').on('click', function() {
                     //$('#popUp .container').show();
                     $('#popUp').addClass('hidden loader');
                     $('#popUp a').hide();
@@ -97,8 +97,8 @@ $('.digg').on('click', function loadDigg() {
                 var $diggTemplate = $('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>').appendTo("#main");
 
                 $diggTemplate.on('click', function(event) {
-                   $('iframe').hide().attr('src', result.content.url);
-                   $('#popUp .container').show();
+                    $('iframe').hide().attr('src', result.content.url);
+                    $('#popUp .container').show();
                     event.preventDefault();
                     $('#popUp a').show();
                     $('#popUp').removeClass('loader hidden');
@@ -109,14 +109,14 @@ $('.digg').on('click', function loadDigg() {
                     $('#source').on('click', function() {
                         event.preventDefault();
                         $('#popUp .container').hide();
-                       $('iframe').show();
+                        $('iframe').show();
                     });
                 });
 
                 $('.closePopUp').click(function() {
                     $('#popUp').addClass('hidden loader');
                     $('#popUp a').hide();
-                   $('iframe').hide();
+                    $('iframe').hide();
                 });
             });
 
@@ -143,8 +143,8 @@ $('#reddit').on('click', function loadReddit() {
                 var $redditTemplate = $('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions"></section><div class="clearfix"></div></article>').appendTo("#main");
 
                 $redditTemplate.on('click', function(event) {
-                   $('iframe').hide().attr('src', result.data.url);
-                   $('#popUp .container').show();
+                    $('iframe').hide().attr('src', result.data.url);
+                    $('#popUp .container').show();
                     event.preventDefault();
                     $('#popUp a').show();
                     $('#popUp').removeClass('loader hidden');
@@ -154,7 +154,7 @@ $('#reddit').on('click', function loadReddit() {
                     $('#source').on('click', function() {
                         event.preventDefault();
                         $('#popUp .container').hide();
-                       $('iframe').show();
+                        $('iframe').show();
                     });
                 });
 
@@ -203,7 +203,7 @@ $('#googleNews').on('click', function loadGoogleNews() {
                     $('#source').on('click', function() {
                         event.preventDefault();
                         $('#popUp .container').hide();
-                       $('iframe').show();
+                        $('iframe').show();
 
                     });
                 });
@@ -211,7 +211,7 @@ $('#googleNews').on('click', function loadGoogleNews() {
                 $('.closePopUp').click(function() {
                     $('#popUp').addClass('hidden loader');
                     $('#popUp a').hide();
-                   $('iframe').hide();
+                    $('iframe').hide();
                 });
 
             });
