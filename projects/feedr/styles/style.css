@@ -1,4 +1,4 @@
-iframe {
+#frame {
       width: 100%;
     height: 100%;
     background-color: #fff;
@@ -11,7 +11,7 @@ iframe {
 }
 
 #popUp {
-  opacity: 0.95;
+  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;
