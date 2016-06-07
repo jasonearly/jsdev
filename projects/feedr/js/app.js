@@ -6,6 +6,8 @@
 var redditLogo = 'https://camo.githubusercontent.com/b13830f5a9baecd3d83ef5cae4d5107d25cdbfbe/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3732313033382f313732383830352f35336532613364382d363262352d313165332d383964312d3934376632373062646430332e706e67';
 var googleNews = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png';
 
+var allowOriginal = 'https://accesscontrolalloworiginall.herokuapp.com/';
+
 //initial load
 $(window).on('load', function() {
     $('#popUp a').hide();
@@ -56,6 +58,12 @@ $(function initialDigg() {
                         $('#popUp a').show();
                         $('#popUp').removeClass('loader hidden');
 
+                        $('#popUp .container h1').text(result.content.title);
+                        $('#popUp p').text(result.content.description);
+                        $('#source').attr('href', result.content.url);
+                        $('iframe').attr('src', result.content.url);
+
+
                         //display source page in #popUp
                         // $.ajax({
                         //     type: 'GET',
@@ -66,11 +74,6 @@ $(function initialDigg() {
                         //     success: function(results) {
                         //         console.log("source page loads!");
                         //     }
-
-
-                        $('#popUp .container h1').text(result.content.title);
-                        $('#popUp p').text(result.content.description);
-                        $('#source').attr('href', result.content.url);
                     });
 
                 });
@@ -79,7 +82,6 @@ $(function initialDigg() {
                     $('#popUp').addClass('hidden loader');
                     $('#popUp a').hide();
                 });
-            // });
 
 
             $('#popUp').addClass('hidden');
