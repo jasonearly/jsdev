@@ -49,9 +49,9 @@ $(function initialDigg() {
                 //HANDLBARS THIS
                 // $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
 
-                var $articleContainer = $('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>').appendTo('#main');
+                var $articleTemplate = $('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>').appendTo('#main');
 
-                    $articleContainer.on('click', function(event) {
+                    $articleTemplate.on('click', function(event) {
                         event.preventDefault();
                         $('#popUp a').show();
                         $('#popUp').removeClass('loader hidden');
@@ -72,33 +72,6 @@ $(function initialDigg() {
                         $('#popUp p').text(result.content.description);
                         $('#source').attr('href', result.content.url);
                     });
-
-
-
-                // $('.articleContent a').on('click', function(event) {
-                //     event.preventDefault();
-                //     console.log(result.content.title);
-                    // $('#popUp a').show();
-                    // $('#popUp').removeClass('loader hidden');
-
-                    // $('#popUp .container h1').text(result.content.title);
-                    // $('#popUp p').text(result.content.description);
-                    // $('#source').attr('href', result.content.url);
-
-
-
-
-                // var articles = [ results.data.feed ]
-
-                // articles.forEach(function(result) {
-                //     var articleHtml = processHandlebarsTemplate('articleTemplate', result)
-                //     var $articleContainer = $(articleHtml).appendTo('#main')
-
-                //     $articleContainer.on('click', 'a.title', function(event) {
-                //         console.log('You clicked on the following article:')
-                //         console.log(result.content.title )
-                //     })
-                // })
 
                 });
 
@@ -130,18 +103,43 @@ $('.digg').on('click', function loadDigg() {
             results.data.feed.forEach(function(result) {
 
                 //HANDLBARS THIS
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
+                // $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
 
-                $('.articleContent a').on('click', function(event) {
-                    event.preventDefault();
-                    $('#popUp a').show();
-                    $('#popUp').removeClass('loader hidden');
+                 var $diggTemplate = $('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>').appendTo("#main");
 
-                    $('#popUp .container h1').text(result.content.title);
-                    $('#popUp p').text(result.content.description);
-                    $('#source').attr('href', result.content.url);
+                 $diggTemplate.on('click', function(event) {
+                        event.preventDefault();
+                        $('#popUp a').show();
+                        $('#popUp').removeClass('loader hidden');
 
-                });
+                        //display source page in #popUp
+                        // $.ajax({
+                        //     type: 'GET',
+                        //     url: result.content.url,
+                        //     // error: function() {
+                        //     //     alert('Unable to load feed, Incorrect path or invalid feed');
+                        //     // },
+                        //     success: function(results) {
+                        //         console.log("source page loads!");
+                        //     }
+
+
+                        $('#popUp .container h1').text(result.content.title);
+                        $('#popUp p').text(result.content.description);
+                        $('#source').attr('href', result.content.url);
+                    });
+
+
+                // $('.articleContent a').on('click', function(event) {
+                //     event.preventDefault();
+                //     $('#popUp a').show();
+                //     $('#popUp').removeClass('loader hidden');
+
+                //     $('#popUp .container h1').text(result.content.title);
+                //     $('#popUp p').text(result.content.description);
+                //     $('#source').attr('href', result.content.url);
+
+                // });
 
                 $('.closePopUp').click(function() {
                     $('#popUp').addClass('hidden loader');
@@ -168,18 +166,42 @@ $('#reddit').on('click', function loadReddit() {
             $('#popUp').addClass('hidden');
 
             results.data.children.forEach(function(result) {
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions"></section><div class="clearfix"></div></article>');
+                // $("#main").append('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions"></section><div class="clearfix"></div></article>');
 
-                $('.articleContent a').on('click', function(event) {
-                    event.preventDefault();
-                    $('#popUp a').show();
-                    $('#popUp').removeClass('loader hidden');
+                var $redditTemplate = $('<article class="article"><section class="featuredImage"><img src="' + redditLogo + '" /></section><section class="articleContent"><a href="' + result.data.url + '"><h3>' + result.data.title + '</h3></a><h6>tags</h6></section><section class="impressions"></section><div class="clearfix"></div></article>').appendTo("#main");
 
-                    $('#popUp .container h1').text(result.data.title);
-                    $('#popUp p').hide();
-                    $('#source').attr('href', result.data.url);
+                $redditTemplate.on('click', function(event) {
+                        event.preventDefault();
+                        $('#popUp a').show();
+                        $('#popUp').removeClass('loader hidden');
 
-                });
+                        //display source page in #popUp
+                        // $.ajax({
+                        //     type: 'GET',
+                        //     url: result.content.url,
+                        //     // error: function() {
+                        //     //     alert('Unable to load feed, Incorrect path or invalid feed');
+                        //     // },
+                        //     success: function(results) {
+                        //         console.log("source page loads!");
+                        //     }
+
+
+                        $('#popUp .container h1').text(result.data.title);
+                        $('#popUp p').hide();
+                        $('#source').attr('href', result.data.url);
+                    });
+
+                // $('.articleContent a').on('click', function(event) {
+                //     event.preventDefault();
+                //     $('#popUp a').show();
+                //     $('#popUp').removeClass('loader hidden');
+
+                //     $('#popUp .container h1').text(result.data.title);
+                //     $('#popUp p').hide();
+                //     $('#source').attr('href', result.data.url);
+
+                // });
 
 
                 $('.closePopUp').click(function() {
@@ -207,18 +229,42 @@ $('#googleNews').on('click', function loadGoogleNews() {
             $('#popUp').addClass('hidden');
 
             results.responseData.feed.entries.forEach(function(result) {
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + googleNews + '"/></section><section class="articleContent"><a href="' + result.link + '"><h3>' + result.title + '</h3></a><h6>' + result.categories + '</h6></section><section class="impressions"></section><div class="clearfix"></div></article>');
+                // $("#main").append('<article class="article"><section class="featuredImage"><img src="' + googleNews + '"/></section><section class="articleContent"><a href="' + result.link + '"><h3>' + result.title + '</h3></a><h6>' + result.categories + '</h6></section><section class="impressions"></section><div class="clearfix"></div></article>');
 
-                $('.articleContent a').on('click', function(event) {
-                    event.preventDefault();
-                    $('#popUp a').show();
-                    $('#popUp').removeClass('loader hidden');
+                var $googleNewsTemplate = $('<article class="article"><section class="featuredImage"><img src="' + googleNews + '"/></section><section class="articleContent"><a href="' + result.link + '"><h3>' + result.title + '</h3></a><h6>' + result.categories + '</h6></section><section class="impressions"></section><div class="clearfix"></div></article>').appendTo("#main");
 
-                    $('#popUp .container h1').text(result.title);
-                    $('#popUp p').text(result.contentSnippet);
-                    $('#source').attr('href', result.link);
+                $googleNewsTemplate.on('click', function(event) {
+                        event.preventDefault();
+                        $('#popUp a').show();
+                        $('#popUp').removeClass('loader hidden');
 
-                });
+                        //display source page in #popUp
+                        // $.ajax({
+                        //     type: 'GET',
+                        //     url: result.content.url,
+                        //     // error: function() {
+                        //     //     alert('Unable to load feed, Incorrect path or invalid feed');
+                        //     // },
+                        //     success: function(results) {
+                        //         console.log("source page loads!");
+                        //     }
+
+
+                        $('#popUp .container h1').text(result.title);
+                        $('#popUp p').text(result.contentSnippet);
+                        $('#source').attr('href', result.link);
+                    });
+
+                // $('.articleContent a').on('click', function(event) {
+                //     event.preventDefault();
+                //     $('#popUp a').show();
+                //     $('#popUp').removeClass('loader hidden');
+
+                //     $('#popUp .container h1').text(result.title);
+                //     $('#popUp p').text(result.contentSnippet);
+                //     $('#source').attr('href', result.link);
+
+                // });
 
                 $('.closePopUp').click(function() {
                     $('#popUp').addClass('hidden loader');
