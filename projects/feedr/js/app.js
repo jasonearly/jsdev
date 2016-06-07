@@ -43,19 +43,62 @@ $(function initialDigg() {
             alert('Unable to load feed, Incorrect path or invalid feed');
         },
         success: function(results) {
+
             results.data.feed.forEach(function(result) {
 
                 //HANDLBARS THIS
-                $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
+                // $("#main").append('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>');
 
-                $('.articleContent a').on('click', function(event) {
-                    event.preventDefault();
-                    $('#popUp a').show();
-                    $('#popUp').removeClass('loader hidden');
+                var $articleContainer = $('<article class="article"><section class="featuredImage"><img src="' + result.content.media.images[0].url + '" alt="" /></section><section class="articleContent"><a href="' + result.content.url + '"><h3>' + result.content.title + '</h3></a><h6>' + result.content.tags[0].display + '</h6></section><section class="impressions">' + result.diggs.count + '</section><div class="clearfix"></div></article>').appendTo('#main');
 
-                    $('#popUp .container h1').text(result.content.title);
-                    $('#popUp p').text(result.content.description);
-                    $('#source').attr('href', result.content.url);
+                    $articleContainer.on('click', function(event) {
+                        event.preventDefault();
+                        $('#popUp a').show();
+                        $('#popUp').removeClass('loader hidden');
+
+                        //display source page in #popUp
+                        // $.ajax({
+                        //     type: 'GET',
+                        //     url: result.content.url,
+                        //     // error: function() {
+                        //     //     alert('Unable to load feed, Incorrect path or invalid feed');
+                        //     // },
+                        //     success: function(results) {
+                        //         console.log("source page loads!");
+                        //     }
+
+
+                        $('#popUp .container h1').text(result.content.title);
+                        $('#popUp p').text(result.content.description);
+                        $('#source').attr('href', result.content.url);
+                    });
+
+
+
+                // $('.articleContent a').on('click', function(event) {
+                //     event.preventDefault();
+                //     console.log(result.content.title);
+                    // $('#popUp a').show();
+                    // $('#popUp').removeClass('loader hidden');
+
+                    // $('#popUp .container h1').text(result.content.title);
+                    // $('#popUp p').text(result.content.description);
+                    // $('#source').attr('href', result.content.url);
+
+
+
+
+                // var articles = [ results.data.feed ]
+
+                // articles.forEach(function(result) {
+                //     var articleHtml = processHandlebarsTemplate('articleTemplate', result)
+                //     var $articleContainer = $(articleHtml).appendTo('#main')
+
+                //     $articleContainer.on('click', 'a.title', function(event) {
+                //         console.log('You clicked on the following article:')
+                //         console.log(result.content.title )
+                //     })
+                // })
 
                 });
 
@@ -63,7 +106,8 @@ $(function initialDigg() {
                     $('#popUp').addClass('hidden loader');
                     $('#popUp a').hide();
                 });
-            });
+            // });
+
 
             $('#popUp').addClass('hidden');
         }
@@ -190,7 +234,7 @@ $('#googleNews').on('click', function loadGoogleNews() {
 
 
 
-//STILL NEEDS TO LOOP THROUGH TO GET RIGHT DATA
+
 //The app must be able to display the full contents of the article. This can be as simple as an iframe or as fancy as you need it to be.
 
 
